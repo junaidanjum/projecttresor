@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState, useEffect} from 'react'
+import { csv } from 'd3'
+import Chart from './hoc/chart.js'
+import Select from './hoc/select.js'
+const App = () => {
+  const [data, setData] = useState()
+  const [value, setValue] = useState()
 
-function App() {
+useEffect(()=> {
+    csv('data.csv').then(data => {
+      setData(data);
+    })
+  }, [])
+
+  const handleChange = (e) => {
+    setValue(e.target.value)
+}
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    (data) ? 
+      (   <div>
+          Hello
+          <br/>
+          <Chart data= {data} value={value}/>
+          <Select value={value} handleChange={handleChange} data={data}/>
+          {/* {data[3].Type} */}
+          </div>
+  ) : null
+  )
 }
 
-export default App;
+export default App
