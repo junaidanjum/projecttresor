@@ -1,4 +1,5 @@
 This project is submitted as an assignment for Tresor Systems. 
+The output can be viewed directly at: http://gray-digestion.surge.sh/
 
 # Getting Started with Create React App
 
